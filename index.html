@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Share</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+	<ul class="share-list">
+		<li><button class="btn-share" data-btn-action="shareOnFacebook" data-to-share="toShare">FB</button></li>
+		<li><button class="btn-share" data-btn-action="shareOnTweeter" data-to-share="toShare">T</button></li>
+	</ul>
+
+	<script>
+		var toShare = {
+			"id":"1",
+			"title":"title of the article",
+			"url":"http://www.url.com",
+			"description":"description blabla bla"
+		}
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script>
+
+	// TO DO
+	// Navigate in toShare object with id for find the good article
+
+	$(".btn-share").on("click", function(){
+		// button
+		var $el = $(this);
+
+		// page to share find the object
+		var pageToShare = $el.data("to-share");
+
+		// label
+		var theTitle 				= pageToShare.title,
+				theUrl					= pageToShare.url,
+				theDescription 	= pageToShare.description;
+				theSource			 	= pageToShare.source;
+
+		// template shard URL
+		var shareOnTwitter 			= "http://twitter.com/home?status="+theTitle+"+"+theUrl,
+				shareOnDigg 				= "http://www.digg.com/submit?phase=2&url="+theUrl+"&title"+theTitle,
+				shareOnFacebook 		= "http://www.facebook.com/share.php?u="+theUrl+"&title="+theTitle,
+				shareOnStumbleUpon	= "http://www.stumbleupon.com/submit?url="+theUrl+"&title="+theTitle,
+				shareOnDelicious		= "http://del.icio.us/post?url="+theUrl+"&title="+theTitle+"&notes="+theDescription,
+				shareOnLinkedin			= "http://www.linkedin.com/shareArticle?mini=true&url="+theUrl+"&title="+theTitle+"&source"+theSource,
+				shareOnGoogle 			= "https://plus.google.com/share?url="+theUrl;
+
+		var shareOn = { "shareOnFacebook":shareOnFacebook };
+
+		// properties
+		var popupWidth = 200,
+				popupHeight = 100;
+
+
+		console.log(shareOnFacebook);
+		console.log(toShare.title);
+		console.log($el.data("to-share")+" et");
+
+/*
+		newwindow = window.open($(this).attr('href'),'',"height="+popupHeight+",width="+popupWidth);
+		if (window.focus) {newwindow.focus()}
+		return false;
+*/
+
+	});
+	</script>
+</body>
+</html>
