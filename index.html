@@ -1,88 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Share</title>
+  <meta charset="UTF-8">
+  <title>Share</title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
-	<ul class="list-unstyled">
-		<li><button class="btn btn-link btn-share" data-btn-action="facebook" data-to-share="123">Facebook</button></li>
-		<li><button class="btn btn-link btn-share" data-btn-action="twitter" data-to-share="123">Twitter</button></li>
-	</ul>
+  <ul class="list-unstyled">
+    <li><button class="btn btn-link btn-share" data-btn-action="facebook" data-to-share="123">Facebook</button></li>
+    <li><button class="btn btn-link btn-share" data-btn-action="twitter" data-to-share="123">Twitter</button></li>
+  </ul>
 
-	<script>
-		var articles = {
-			"123" : {
-				"id":"1",
-				"title":"title of the article",
-				"srcUrl":"http://www.google.com", // or window location (in click function)
-				"description":"description blabla bla"
-			}
-		};
-	</script>
+  <script>
+    var articles = {
+      "123" : {
+        "id":"1",
+        "title":"title of the article",
+        "srcUrl":"http://www.google.com", // or window location (in click function)
+        "description":"description blabla bla"
+      }
+    };
+  </script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script>
-
-
-	$(".btn-share").on("click", function(){
-
-		// button
-		var $el = $(this);
-
-		// page to share find the object
-		var idArticle = $el.data("to-share");
-
-		// share on social network
-		var whichSocial = $el.data("btn-action");
-
-		// label
-		var url 						= window.location.href, // Dynamique URL
-		    theTitle 				= articles[idArticle].title,
-				theUrl					= url, // or articles[idArticle].srcUrl,
-				theDescription 	= articles[idArticle].description,
-				theSource			 	= articles[idArticle].source;
-				
-
-		// template shard URL
-		var socialNetwork = {
-													"twitter" : "http://twitter.com/home?status="+theTitle+"+"+theUrl,
-													"facebook" : "http://www.facebook.com/share.php?u="+theUrl+"&title="+theTitle,
-													"linkedin" : "http://www.linkedin.com/shareArticle?mini=true&url="+theUrl+"&title="+theTitle+"&source"+theSource,
-													"digg" : "http://www.digg.com/submit?phase=2&url="+theUrl+"&title"+theTitle,
-													"stumbleUpon" : "http://www.stumbleupon.com/submit?url="+theUrl+"&title="+theTitle,
-													"delicious" : "http://del.icio.us/post?url="+theUrl+"&title="+theTitle+"&notes="+theDescription,
-													"google" : "https://plus.google.com/share?url="+theUrl,
-													// TO DO
-													"facebookV2" : "https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.3"
-												};
-
-		// properties
-		var popupWidth = 600,
-				popupHeight = 300,
-				popupTop = ($(window).height()/2)-(popupHeight/2),
-				popupLeft = ($(window).width()/2)-(popupWidth/2);
-
-		// Manage exeption popup height
-		function heightPopup(socialNetworkType) {
-			if(socialNetworkType == "facebook") {
-				return 200
-			} else {
-				return popupHeight
-			}
-		};
-
-		// Open popup
-		newwindow = window.open(socialNetwork[whichSocial],"","height="+heightPopup(whichSocial)+",width="+popupWidth+",top="+popupTop+",left="+popupLeft);
-		if (window.focus) {newwindow.focus()}
-		return false;
-
-	});
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script>
 
 
-	</script>
+  $(".btn-share").on("click", function(){
+
+    // button
+    var $el = $(this);
+
+    // page to share find the object
+    var idArticle = $el.data("to-share");
+
+    // share on social network
+    var whichSocial = $el.data("btn-action");
+
+    // label
+    var url             = window.location.href, // Dynamique URL
+        theTitle        = articles[idArticle].title,
+        theUrl          = url, // or articles[idArticle].srcUrl,
+        theDescription  = articles[idArticle].description,
+        theSource       = articles[idArticle].source;
+        
+
+    // template shard URL
+    var socialNetwork = {
+                          "twitter" : "http://twitter.com/home?status="+theTitle+"+"+theUrl,
+                          "facebook" : "http://www.facebook.com/share.php?u="+theUrl+"&title="+theTitle,
+                          "linkedin" : "http://www.linkedin.com/shareArticle?mini=true&url="+theUrl+"&title="+theTitle+"&source"+theSource,
+                          "digg" : "http://www.digg.com/submit?phase=2&url="+theUrl+"&title"+theTitle,
+                          "stumbleUpon" : "http://www.stumbleupon.com/submit?url="+theUrl+"&title="+theTitle,
+                          "delicious" : "http://del.icio.us/post?url="+theUrl+"&title="+theTitle+"&notes="+theDescription,
+                          "google" : "https://plus.google.com/share?url="+theUrl,
+                          // TO DO
+                          "facebookV2" : "https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.3"
+                        };
+
+    // properties
+    var popupWidth = 600,
+        popupHeight = 300,
+        popupTop = ($(window).height()/2)-(popupHeight/2),
+        popupLeft = ($(window).width()/2)-(popupWidth/2);
+
+    // Manage exeption popup height
+    function heightPopup(socialNetworkType) {
+      if(socialNetworkType == "facebook") {
+        return 200
+      } else {
+        return popupHeight
+      }
+    };
+
+    // Open popup
+    newwindow = window.open(socialNetwork[whichSocial],"","height="+heightPopup(whichSocial)+",width="+popupWidth+",top="+popupTop+",left="+popupLeft);
+    if (window.focus) {newwindow.focus()}
+    return false;
+
+  });
+
+
+  </script>
 </body>
 </html>
